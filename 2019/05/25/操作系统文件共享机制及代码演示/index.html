@@ -140,31 +140,24 @@
 
 
 
-  <meta name="description" content="1、字节码文件产生缘由java语言在其诞生之初就有一句口号：“一次编写，到处运行”，这句话也表达了大多数开发人员对于冲破平台界限的一种渴望，因为以前的编程语言都不支持跨平台运行。就拿C语言作为一个例子，我们知道在不同的操作系统中的cpu指令集是不一样的例如windows只支持x86系列，linux即有支持ARM的，也有支持x86的，这就导致一个结果——C语言在不同操作系统编译后产生的二进制序列运行">
-<meta name="keywords" content="Java字节码,Java">
+  <meta name="description" content="内存inode我们知道inode索引节点是UNIX操作系统的一种数据结构，它包含了与文件系统中各个文件相关的一些重要信息，当用户搜索一个文件时，操作系统会根据文件名在磁盘上的inode表中找到该文件对应的inode，该inode包含文件的属主ID，属主的组ID，文件大小，文件使用磁盘块数量，修改时间等信息。但是在实际操作中，操作系统操作的都是内存上的内容，所以内存中会有磁盘上部分的inode表中的">
+<meta name="keywords" content="操作系统,文件系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java字节码的文件结构解析">
-<meta property="og:url" content="https://JXhacker.github.io/2019/04/10/Java字节码的文件结构解析/index.html">
+<meta property="og:title" content="操作系统文件共享机制及代码演示">
+<meta property="og:url" content="https://JXhacker.github.io/2019/05/25/操作系统文件共享机制及代码演示/index.html">
 <meta property="og:site_name" content="WanZhiwen&#39;blogs">
-<meta property="og:description" content="1、字节码文件产生缘由java语言在其诞生之初就有一句口号：“一次编写，到处运行”，这句话也表达了大多数开发人员对于冲破平台界限的一种渴望，因为以前的编程语言都不支持跨平台运行。就拿C语言作为一个例子，我们知道在不同的操作系统中的cpu指令集是不一样的例如windows只支持x86系列，linux即有支持ARM的，也有支持x86的，这就导致一个结果——C语言在不同操作系统编译后产生的二进制序列运行">
+<meta property="og:description" content="内存inode我们知道inode索引节点是UNIX操作系统的一种数据结构，它包含了与文件系统中各个文件相关的一些重要信息，当用户搜索一个文件时，操作系统会根据文件名在磁盘上的inode表中找到该文件对应的inode，该inode包含文件的属主ID，属主的组ID，文件大小，文件使用磁盘块数量，修改时间等信息。但是在实际操作中，操作系统操作的都是内存上的内容，所以内存中会有磁盘上部分的inode表中的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/1.png">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/2.png">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/3.png">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/4.png">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/5.png">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/6.png">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/7.png">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/8.png">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/9.png">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/10.png">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/11.png">
-<meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/12.png">
-<meta property="og:updated_time" content="2019-04-15T05:29:01.019Z">
+<meta property="og:image" content="https://jxhacker.github.io/2019/05/25/操作系统文件共享机制及代码演示/不同的共享关系.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/05/25/操作系统文件共享机制及代码演示/同进程复制fd.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/05/25/操作系统文件共享机制及代码演示/跨进程复制fd.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/05/25/操作系统文件共享机制及代码演示/共享数据独立访问.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/05/25/操作系统文件共享机制及代码演示/共享数据独立访问2.png">
+<meta property="og:updated_time" content="2019-05-25T08:34:37.038Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java字节码的文件结构解析">
-<meta name="twitter:description" content="1、字节码文件产生缘由java语言在其诞生之初就有一句口号：“一次编写，到处运行”，这句话也表达了大多数开发人员对于冲破平台界限的一种渴望，因为以前的编程语言都不支持跨平台运行。就拿C语言作为一个例子，我们知道在不同的操作系统中的cpu指令集是不一样的例如windows只支持x86系列，linux即有支持ARM的，也有支持x86的，这就导致一个结果——C语言在不同操作系统编译后产生的二进制序列运行">
-<meta name="twitter:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/1.png">
+<meta name="twitter:title" content="操作系统文件共享机制及代码演示">
+<meta name="twitter:description" content="内存inode我们知道inode索引节点是UNIX操作系统的一种数据结构，它包含了与文件系统中各个文件相关的一些重要信息，当用户搜索一个文件时，操作系统会根据文件名在磁盘上的inode表中找到该文件对应的inode，该inode包含文件的属主ID，属主的组ID，文件大小，文件使用磁盘块数量，修改时间等信息。但是在实际操作中，操作系统操作的都是内存上的内容，所以内存中会有磁盘上部分的inode表中的">
+<meta name="twitter:image" content="https://jxhacker.github.io/2019/05/25/操作系统文件共享机制及代码演示/不同的共享关系.png">
 
 
 
@@ -172,7 +165,7 @@
 
   
   
-  <link rel="canonical" href="https://JXhacker.github.io/2019/04/10/Java字节码的文件结构解析/">
+  <link rel="canonical" href="https://JXhacker.github.io/2019/05/25/操作系统文件共享机制及代码演示/">
 
 
 
@@ -182,7 +175,7 @@
   };
 </script>
 
-  <title>Java字节码的文件结构解析 | WanZhiwen'blogs</title>
+  <title>操作系统文件共享机制及代码演示 | WanZhiwen'blogs</title>
   
 
 
@@ -412,7 +405,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://JXhacker.github.io/2019/04/10/Java字节码的文件结构解析/">
+    <link itemprop="mainEntityOfPage" href="https://JXhacker.github.io/2019/05/25/操作系统文件共享机制及代码演示/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JXhacker">
@@ -429,7 +422,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java字节码的文件结构解析
+          <h1 class="post-title" itemprop="name headline">操作系统文件共享机制及代码演示
 
               
             
@@ -455,7 +448,7 @@
                 
               
 
-              <time title="创建时间：2019-04-10 00:00:33" itemprop="dateCreated datePublished" datetime="2019-04-10T00:00:33+08:00">2019-04-10</time>
+              <time title="创建时间：2019-05-25 16:29:35" itemprop="dateCreated datePublished" datetime="2019-05-25T16:29:35+08:00">2019-05-25</time>
             
 
             
@@ -464,8 +457,8 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; 更新于
-              <time itemprop="dateUpdated" datetime="2019-04-15T13:29:01+08:00" content="2019-04-15">
-                2019-04-15
+              <time itemprop="dateUpdated" datetime="2019-05-25T16:34:37+08:00" content="2019-05-25">
+                2019-05-25
               </time>
             </span>
           
@@ -497,7 +490,7 @@
 
           
           
-            <span id="/2019/04/10/Java字节码的文件结构解析/" class="leancloud_visitors" data-flag-title="Java字节码的文件结构解析">
+            <span id="/2019/05/25/操作系统文件共享机制及代码演示/" class="leancloud_visitors" data-flag-title="操作系统文件共享机制及代码演示">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -528,152 +521,33 @@
       
 
       
-        <h2 id="1、字节码文件产生缘由"><a href="#1、字节码文件产生缘由" class="headerlink" title="1、字节码文件产生缘由"></a>1、字节码文件产生缘由</h2><p>java语言在其诞生之初就有一句口号：“一次编写，到处运行”，这句话也表达了大多数开发人员对于冲破平台界限的一种渴望，因为以前的编程语言都不支持跨平台运行。就拿C语言作为一个例子，我们知道在不同的操作系统中的cpu指令集是不一样的例如windows只支持x86系列，linux即有支持ARM的，也有支持x86的，这就导致一个结果——C语言在不同操作系统编译后产生的二进制序列运行效果是不一样的，它就必须得在不同的操作系统上安装不同的编译器才能在不同的操作系统上运行。而Java则用了一个虚拟机的概念，Java的源代码经过编译后产生.class为后缀的文件，这就是我们所说的字节码文件。<br>用一小段代码进行演示（本文其它部分也用该段代码进行讲解）：<br>源代码TestClass.java：</p>
-<pre><code>package org.fenixsoft.clazz;
-public class TestClass{
-    private int m;
-    public int inc(){
-        return m+1;
-    }
-}
-</code></pre><p>用javac命令进行编译生成TestClass.class文件，然后用winhex这个16进制编辑器进行查看<br><img src="/2019/04/10/Java字节码的文件结构解析/1.png" alt="二进制class文件"><br>这种文件可以在所有的Java虚拟机上运行，不管你是什么操作系统。从而实现跨平台运行，虽然不同平台的Java虚拟机的实现各不相同。这种虚拟机是真实操作系统的一个抽象，逻辑上可以理解为一个独立的平台，利用这个平台实现跨操作系统运行。<br>除了平台无关之外，Java虚拟机还实现了语言无关，因为Java虚拟机只和class文件具有“绑定关系”，但是除Java语言外的其它语言如果能编译成class文件的话也能在虚拟机上运行。已经有JRuby和Groovy等语言能在Java虚拟机上运行。<br>总的来说，虚拟机的引入是实现平台无关性和语言无关性的一个关键，对与字节码文件的研究对于理解Java和Java虚拟机有很大的帮助，下面我们就来深入理解一下这个字节码文件的结构。</p>
-<h2 id="2、class类文件结构"><a href="#2、class类文件结构" class="headerlink" title="2、class类文件结构"></a>2、class类文件结构</h2><p>Java的class文件时一组以8位的字节为基础单位的二进制，根据Java虚拟机规定，Class文件格式采用一种类似c语言的结构体来存储数据，这种伪结构中只有两种数据类型：无符号数和表。</p>
-<ul>
-<li>无符号数：数据基本的数据类型，以u1、u2、u4、u8分别表示一个字节，2个字节，4个字节和8个字节的无符号数，它可以用老表示数字，索引、数据值或者按照utf-8编码的字符串。</li>
-<li>表：由多个无符号数或者其它表作为数据项构成复合数据类型<h3 id="2-1、魔数和class文件版本"><a href="#2-1、魔数和class文件版本" class="headerlink" title="2.1、魔数和class文件版本"></a>2.1、魔数和class文件版本</h3>我从这里开始逐字节分析class文件。每个class文件的头4 个字节称为“魔数”，它的作用的标注文件类型，确定这个文件是否是能被虚拟机接收的class文件，虚拟机之所以不用文件后缀名作为判断依据的原因是文件后缀名可以任意改动。例如本文中TestClass.class文件中的魔数是：<code>0xCAFEBABE</code>（咖啡宝贝……），这个魔数在Java还被称为Oak的时候就已经被定下来了。Java的商标大概就是因此定下来的。<br>紧接着魔数的下面4个字节存储的是Class文件的版本号：第5，6字节是次版本号，第7，8字节是主版本号。Java的版本号是从45开始的，JDK1.1后每个JDK大版本发布主版本号都往上+1，高版本的JDK兼容以前版本的Class文件，但不能运行以后版本的class文件，即使格式没变，虚拟机也拒绝执行。本例中的class文件的次版本号是<code>0x0000</code>，主版本号是<code>0x0034</code>，它是十进制是52，说明我用的JDK版本是JDK1.8。<br><img src="/2019/04/10/Java字节码的文件结构解析/2.png" alt="魔数和class版本"></li>
-</ul>
-<h3 id="2-2、常量池"><a href="#2-2、常量池" class="headerlink" title="2.2、常量池"></a>2.2、常量池</h3><p>常量池的入口在主次版本之后，常量池中存放着class的资源，它与class文件中其它项目关联最大，它也是class文件中第一个出现的表类型的数据项目。<br>常量池入口的的一个大小为2u类型（2个字节）的数据被称为常量池容量计数器（constant_pool_count），代表常量池中的常量数量。本例中的常量池容器计数器值是<code>0x13</code>，其十进制是19，但是这个容量计数器是从1开始的，设计者将第0项做了特殊考虑，是为了满足后面某些指向常量池的数据可能会需要表达“不引用任何常量池”的项目，这种情况下可以把索引值设置为0来表示，所以本例中的常量数量是<code>19-1=18</code>项。这18个常量紧跟在常量计数器后面。<br>下面来介绍在常量池中常量的类型已经其结构。<br>常量池中的每一项常量都是一张表，在JDK1.7之前共有11个结构各不相同的表结构数据，在JDK1.7中为了更好的支持动态语言的调用，又加了三个(CONSTANT_MethodHandle_info,CONSTANT_MethodType_info,CONSTANT_InvokeDynamic_info)，这14种表都有一个共同点，就是表的第一位都是一个u1类型的标志位tag代表当前这个变量数据哪种常量类型。而其它位置的数据并不统一，各具其结构。其具体的结构如下。<br><img src="/2019/04/10/Java字节码的文件结构解析/3.png" alt="常量池"><br>可以根据这个表逐个分析这些常量，我逐个把这18个常量进行圈出来（可能有点看不清）<br><img src="/2019/04/10/Java字节码的文件结构解析/4.png" alt="字节码中的常量"><br>最左边的箭头是指承接上一层的框框。<br>为了更方便的观察常量池的结构，可以用Javap命令进行可视化输出，在命令行输入</p>
-<pre><code>javap -verbose TestClass
-</code></pre><p>我截取常量池部分的输出<br><img src="/2019/04/10/Java字节码的文件结构解析/5.png" alt="常量池输出"><br>其中第一列是常量类型，第二列表示引用的常量或者utf8类型常量值，例如第一个常量#1的类型名称是Methodref，引用了第4个和第15个常量，第15个常量是NameAndType类型，值又引用了第七个和第八个常量，第七个和第八个常量又是&lt; init &gt;和()V，第四个常量引用第18个常量，第18个常量值是Java/lang/Object(全限类名)。</p>
-<h3 id="2-3、访问标志"><a href="#2-3、访问标志" class="headerlink" title="2.3、访问标志"></a>2.3、访问标志</h3><p>常量池结束后紧接着的两个字节表示访问标志(access_flag)，这个标志用于识别类或者接口的访问信息。2个字节本来是16个标志位，但是只有8个标志位有用，没有使用到的标志一律为0。<br><img src="/2019/04/10/Java字节码的文件结构解析/6.png" alt="访问标志"><br>本例中TestClass是一个普通类，不是接口、美剧或者注解，被public关键词修饰但没有被声明为final和abstract，所有它的ACC_PUBLIC和ACC_SUPER标志位是1，所以本例中的访问标志是<code>0x0021</code>。</p>
-<h3 id="2-4、类索引、父类索引和接口索引集合"><a href="#2-4、类索引、父类索引和接口索引集合" class="headerlink" title="2.4、类索引、父类索引和接口索引集合"></a>2.4、类索引、父类索引和接口索引集合</h3><p>类索引和父类索引都是一个u2类型的数据而接口索引是一组u2类型数据的集合，class通过这三个数据来确定类的继承关系。类索引用于确定类的全限类名，父索引用于确定这个父类的全限类名，接口索引用于描述这个类实现了哪些接口，因为一个类可以实现多个接口。<br>类索引、父类索引和接口索引按顺序排列在访问标志之后，类索引和父索引分别用一个u2类型的数据，分别指向一个类型是CONSTANT_Class_info类型的类描述符常量，通过其索引值找到CONSTANT_utf8_info中的全限类名字符串。<br>接口索引人口第一项是一个u2类型的数据为接口计数器(interface_count)，表示索引表个数，若没有实现任何接口，其值是0。<br>本例中的类索引是<code>0x0003</code>，父索引是<code>0x0004</code>，分别表示org.fenixsoft/clazz/TestClass和，java/lang/Object。接口计数器是<code>0x0000</code>，无接口实现。<br><img src="/2019/04/10/Java字节码的文件结构解析/7.png" alt="索引"></p>
-<h3 id="2-5、字段表集合"><a href="#2-5、字段表集合" class="headerlink" title="2.5、字段表集合"></a>2.5、字段表集合</h3><p>字段表集合分为容量计数器（fields_count)和字段表，字段计数器表示字段表个数。<br>字段表用于描述接口或者类中申明的变量，字段修饰符放在access_flag中，它与访问标志的access_flag相似，具体含义见下表<br><img src="/2019/04/10/Java字节码的文件结构解析/8.png" alt="字段表"><br>跟随access_flag后面的是两项索引值，name_index和descriptor_index。它们都是对常量池的引用。分别表示字段的简单名称和字段和方法的描述符。字段描述符的作用是描述字段的数据类型、方法的参数列表和返回值，基本数据类型和void类型都用一个大写字符表示，描述符标识字含义见下表</p>
-<table>
-<thead>
-<tr>
-<th>标识字符</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>B</td>
-<td>基本类型byte</td>
-</tr>
-<tr>
-<td>C</td>
-<td>基本类型char</td>
-</tr>
-<tr>
-<td>D</td>
-<td>基本类型double</td>
-</tr>
-<tr>
-<td>F</td>
-<td>基本类型float</td>
-</tr>
-<tr>
-<td>I</td>
-<td>基本类型int</td>
-</tr>
-<tr>
-<td>J</td>
-<td>基本类型long</td>
-</tr>
-<tr>
-<td>S</td>
-<td>基本类型short</td>
-</tr>
-<tr>
-<td>Z</td>
-<td>基本类型boolean</td>
-</tr>
-<tr>
-<td>V</td>
-<td>特殊类型void</td>
-</tr>
-<tr>
-<td>L</td>
-<td>对象类型如java/lang/Object</td>
-</tr>
-</tbody>
-</table>
-<p>对于数组类型，每一维度都使用一个前置’[‘描述，如一个整型数组int[]被描述为“[I”，用描述符描述方法时，参数列表严格顺序放在一组小括号里面，如void inc(int a,int b)的描述符是“(II)V”<br>本例中容器计数器的值是<code>0x0001</code>,说明有一个字段表，该字段表access_flag是<code>0x0002</code>,说明类型private，name_index和descriptor_index分别是<code>0x0005</code>和<code>0x0006</code>分别表示m和I说明其类型是int。descriptor_index后面跟一个属性表集合用于存放一些额外的信息。本例属性表计算器是<code>0x0000</code>，说明没有额外信息。<br><img src="/2019/04/10/Java字节码的文件结构解析/9.png" alt="字节码中的字段"></p>
-<h3 id="2-6、方法表集合"><a href="#2-6、方法表集合" class="headerlink" title="2.6、方法表集合"></a>2.6、方法表集合</h3><p>class对方法的描述和对字段的描述几乎采用一样的方式。仅在访问标志和属性表集合有所区别。<br>方法访问标志是：</p>
-<table>
-<thead>
-<tr>
-<th>标志名称</th>
-<th>标志值</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ACC_PUBLIC</td>
-<td>0x0001</td>
-<td>方法是否为public</td>
-</tr>
-<tr>
-<td>ACC_PRIVATE</td>
-<td>0x0002</td>
-<td>方法是否为private</td>
-</tr>
-<tr>
-<td>ACC_PROTECTED</td>
-<td>0x0004</td>
-<td>方法是否为protected</td>
-</tr>
-<tr>
-<td>ACC_STATIC</td>
-<td>0x0008</td>
-<td>方法是否为static</td>
-</tr>
-<tr>
-<td>ACC_FINAL</td>
-<td>0x0010</td>
-<td>方法是否为final</td>
-</tr>
-<tr>
-<td>ACC_SYHCHRONRIZED</td>
-<td>0x0020</td>
-<td>方法是否为synchronized</td>
-</tr>
-<tr>
-<td>ACC_BRIDGE</td>
-<td>0x0040</td>
-<td>方法是否是有编译器产生的方法</td>
-</tr>
-<tr>
-<td>ACC_VARARGS</td>
-<td>0x0080</td>
-<td>方法是否接受参数</td>
-</tr>
-<tr>
-<td>ACC_NATIVE</td>
-<td>0x0100</td>
-<td>方法是否为native</td>
-</tr>
-<tr>
-<td>ACC_ABSTRACT</td>
-<td>0x0400</td>
-<td>方法是否为abstract</td>
-</tr>
-<tr>
-<td>ACC_STRICTFP</td>
-<td>0x0800</td>
-<td>方法是否为strictfp</td>
-</tr>
-<tr>
-<td>ACC_SYNTHETIC</td>
-<td>0x1000</td>
-<td>方法是否是有编译器自动产生的</td>
-</tr>
-</tbody>
-</table>
-<p>还是以本例子讲解<br>容量计数器是<code>0x0002</code>，说明类中有两个方法(分别是类构造器和源码中的inc)，其中第一个方法访问标志是<code>0x0001</code>说明是public，名称索引和描述符索引分别是<code>0x0007</code>和<code>0x0008</code>，分别表示&lt; init&gt;和()V说明是void返回值，无参数。<br><img src="/2019/04/10/Java字节码的文件结构解析/10.png" alt="字节码中的方法表"></p>
-<p>接下来是属性集合，其容器计数器是<code>0x0001</code>，说明有个属性表，其中第一个属性表的第一个u2数据表示attribute_name_inde是属性表名称，值是<code>0x0009</code>，对于常量池“code”值，说明是个code属性。code属性表结构如表<br><img src="/2019/04/10/Java字节码的文件结构解析/11.png" alt="code属性表集合"><br>本例中属性长度是<code>0x0000001D</code>，maxstack是<code>0x0001</code>，maxlocal是<code>0x0001</code>，codelength是<code>0x00000005</code>，code是<code>0x2AB70001B1</code>，下面是exception属性集合，其计数器是0x0000，说明没有异常。下面有一个属性表，计数器是<code>0x0001</code>，值是<code>0x000A</code>，是LineNumberTable属性，用于描述Java源码行号和字节码行号之间的关系。其attribute_name_index是<code>0x000A</code>是属性名，指LineNumberTable，<code>0x00000006</code>是属性长度，<code>0x0001</code>是line_number_table_length,line_number_info包括了start_pc和line_number两个u2数据项。<br><img src="/2019/04/10/Java字节码的文件结构解析/12.png" alt="字节码中的属性表"></p>
-<h3 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h3><p>本文首先对class文件进行简要介绍，随后对的一个真实的.class文件每个字节进行分析深入了解了它的结构，分析它与源代码之间的关系，本文是了解Java虚拟机的基础知识，以科普为主，如有错误欢迎指正。<br>最后欢迎大家点赞关注</p>
+        <h2 id="内存inode"><a href="#内存inode" class="headerlink" title="内存inode"></a>内存inode</h2><p>我们知道inode索引节点是UNIX操作系统的一种数据结构，它包含了与文件系统中各个文件相关的一些重要信息，当用户搜索一个文件时，操作系统会根据文件名在磁盘上的inode表中找到该文件对应的inode，该inode包含文件的属主ID，属主的组ID，文件大小，文件使用磁盘块数量，修改时间等信息。但是在实际操作中，操作系统操作的都是内存上的内容，所以内存中会有磁盘上部分的inode表中的数据或者叫做inode表的一个缓存，用于对inode的快速访问，内存中的这块inode叫做内存inode。</p>
+<h2 id="系统文件打开表"><a href="#系统文件打开表" class="headerlink" title="系统文件打开表"></a>系统文件打开表</h2><p>系统文件打开表（Open file table）存在于内存放中，整个操作系统只维护一张这样的表，用于保存已经打开文件的FCB文件号、共享计数（打开共享）、读写位置、打开模式、修改标志等信息，其中还有一个比较重要的属性就是一个指向内存inode的一个指针，这个指针的作用我们后面会介绍。</p>
+<h2 id="用户文件打开表"><a href="#用户文件打开表" class="headerlink" title="用户文件打开表"></a>用户文件打开表</h2><p>用户文件打开表（File Descriptor table）是每个进程都有的一张表，用于记录用户打开的文件的一些信息，主要的属性有文件描述符fd和 一个指向系统文件打开表项的指针。</p>
+<h2 id="不同的共享关系"><a href="#不同的共享关系" class="headerlink" title="不同的共享关系"></a>不同的共享关系</h2><p>用户文件打开表、系统文件打开表和内存inode的关系如下</p>
+<p><img src="/2019/05/25/操作系统文件共享机制及代码演示/不同的共享关系.png" alt="不同的共享关系"></p>
+<h3 id="同进程复制fd"><a href="#同进程复制fd" class="headerlink" title="同进程复制fd"></a>同进程复制fd</h3><p><img src="/2019/05/25/操作系统文件共享机制及代码演示/同进程复制fd.png" alt="同进程复制fd.png"></p>
+<p>在同一个进程中共享同一个open file table表项，结果是两个文件共享一个句柄，可以dup()实现。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fd = open(<span class="string">"test.txt"</span>,O_RDONLY);</span><br><span class="line">    <span class="keyword">int</span> fdcopy = dup(fd);</span><br><span class="line">    <span class="keyword">char</span> buff1[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> buff2[<span class="number">10</span>];</span><br><span class="line">    read(fd, buff1, <span class="number">5</span>);</span><br><span class="line">    read(fdcopy, buff2, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"buff1:%s\n"</span>, buff1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"buff2:%s\n"</span>, buff2);</span><br><span class="line">    close(fd);</span><br><span class="line">    close(fdcopy);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中test.txt中的数据是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ABCDEFGHIJ</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">buff1:ABCDE</span><br><span class="line">buff2:FGHIJ</span><br></pre></td></tr></table></figure>
+<h3 id="跨进程复制fd"><a href="#跨进程复制fd" class="headerlink" title="跨进程复制fd"></a>跨进程复制fd</h3><p><img src="/2019/05/25/操作系统文件共享机制及代码演示/跨进程复制fd.png" alt="跨进程复制fd"></p>
+<p>父进程通过fork命令实现子进程对父进程的一种复制，该父子进程的用户文件打开表一样。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fd = open(<span class="string">"test.txt"</span>,O_RDONLY);</span><br><span class="line">    <span class="keyword">pid_t</span> pid = fork();</span><br><span class="line">    <span class="keyword">char</span> buff[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">if</span>(pid &gt; <span class="number">0</span>)&#123;</span><br><span class="line">	read(fd, buff, <span class="number">5</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"father:%s\n"</span>, buff);</span><br><span class="line">    &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">	read(fd, buff, <span class="number">5</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"son:%s\n"</span>, buff);</span><br><span class="line">    &#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">father:ABCDE</span><br><span class="line">son:FGHIJ</span><br></pre></td></tr></table></figure>
+<h3 id="共享数据独立访问"><a href="#共享数据独立访问" class="headerlink" title="共享数据独立访问"></a>共享数据独立访问</h3><h4 id="父子进程之间共享数据独立访问"><a href="#父子进程之间共享数据独立访问" class="headerlink" title="父子进程之间共享数据独立访问"></a>父子进程之间共享数据独立访问</h4><p><img src="/2019/05/25/操作系统文件共享机制及代码演示/共享数据独立访问.png" alt="共享数据独立访问"></p>
+<p>两个进程访问同一个文件，但是其系统文件打开表指向不同。代码和上面的跨进程复制fd几乎一样，只是这个open函数在fork函数之后执行，导致两个进程file ptr分别指向系统文件打开表不同位置。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">pid_t</span> pid = fork();</span><br><span class="line">    <span class="keyword">int</span> fd = open(<span class="string">"test.txt"</span>,O_RDONLY);</span><br><span class="line">    <span class="keyword">char</span> buff[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">if</span>(pid &gt; <span class="number">0</span>)&#123;</span><br><span class="line">	read(fd, buff, <span class="number">5</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"father:%s\n"</span>, buff);</span><br><span class="line">    &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">	read(fd, buff, <span class="number">5</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"son:%s\n"</span>, buff);</span><br><span class="line">    &#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">father:ABCDE</span><br><span class="line">son:ABCDE</span><br></pre></td></tr></table></figure>
+<h4 id="同一进程之间共享数据独立访问"><a href="#同一进程之间共享数据独立访问" class="headerlink" title="同一进程之间共享数据独立访问"></a>同一进程之间共享数据独立访问</h4><p><img src="/2019/05/25/操作系统文件共享机制及代码演示/共享数据独立访问2.png" alt="共享数据独立访问"></p>
+<p>同一个进程操作同一文件，但是对应的系统文件打开表表项不一样。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fd1 = open(<span class="string">"test.txt"</span>,O_RDONLY);</span><br><span class="line">    <span class="keyword">int</span> fd2 = open(<span class="string">"test.txt"</span>, O_RDONLY);</span><br><span class="line">    <span class="keyword">char</span> buff1[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> buff2[<span class="number">10</span>];</span><br><span class="line">    read(fd1, buff1, <span class="number">5</span>);</span><br><span class="line">    read(fd2, buff2, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"buff1:%s\n"</span>, buff1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"buff2:%s\n"</span>, buff2);</span><br><span class="line">    close(fd1);</span><br><span class="line">    close(fd2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">buff1:ABCDE</span><br><span class="line">buff2:ABCDE</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -730,9 +604,9 @@ public class TestClass{
       
         <div class="post-tags">
           
-            <a href="/tags/Java字节码/" rel="tag"># Java字节码</a>
+            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/文件系统/" rel="tag"># 文件系统</a>
           
         </div>
       
@@ -745,8 +619,8 @@ public class TestClass{
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/09/SSL及其加密通信过程/" rel="next" title="SSL及其加密通信过程">
-                <i class="fa fa-chevron-left"></i> SSL及其加密通信过程
+              <a href="/2019/04/15/Docker基础/" rel="next" title="Docker基础">
+                <i class="fa fa-chevron-left"></i> Docker基础
               </a>
             
           </div>
@@ -754,10 +628,6 @@ public class TestClass{
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/15/Docker基础/" rel="prev" title="Docker基础">
-                Docker基础 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -966,7 +836,7 @@ public class TestClass{
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、字节码文件产生缘由"><span class="nav-number">1.</span> <span class="nav-text">1、字节码文件产生缘由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、class类文件结构"><span class="nav-number">2.</span> <span class="nav-text">2、class类文件结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1、魔数和class文件版本"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、魔数和class文件版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2、常量池"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、常量池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3、访问标志"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、访问标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4、类索引、父类索引和接口索引集合"><span class="nav-number">2.4.</span> <span class="nav-text">2.4、类索引、父类索引和接口索引集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5、字段表集合"><span class="nav-number">2.5.</span> <span class="nav-text">2.5、字段表集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6、方法表集合"><span class="nav-number">2.6.</span> <span class="nav-text">2.6、方法表集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、总结"><span class="nav-number">2.7.</span> <span class="nav-text">3、总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存inode"><span class="nav-number">1.</span> <span class="nav-text">内存inode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统文件打开表"><span class="nav-number">2.</span> <span class="nav-text">系统文件打开表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户文件打开表"><span class="nav-number">3.</span> <span class="nav-text">用户文件打开表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同的共享关系"><span class="nav-number">4.</span> <span class="nav-text">不同的共享关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同进程复制fd"><span class="nav-number">4.1.</span> <span class="nav-text">同进程复制fd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨进程复制fd"><span class="nav-number">4.2.</span> <span class="nav-text">跨进程复制fd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享数据独立访问"><span class="nav-number">4.3.</span> <span class="nav-text">共享数据独立访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#父子进程之间共享数据独立访问"><span class="nav-number">4.3.1.</span> <span class="nav-text">父子进程之间共享数据独立访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同一进程之间共享数据独立访问"><span class="nav-number">4.3.2.</span> <span class="nav-text">同一进程之间共享数据独立访问</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
