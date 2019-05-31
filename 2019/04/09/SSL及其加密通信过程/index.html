@@ -140,13 +140,13 @@
 
 
 
-  <meta name="description" content="从HTTP说起HTTP（Hyper TEXT Transfer Protocol超文本传输协议）是目前互联网上应用最为广泛的一种网络协议，在网络模型中位于应用层，用于在Web浏览器和网站服务器之间传递信息，但是HTTP协议以明文的方式发送内容，不提供任何数据加密，攻击者能够很轻易通过抓包的方式截取传输内容并读懂其中的信息，所以HTTP不适合传输一些比较私密的信息。就比如用户从服务器下载一个文件，如">
+  <meta name="description" content="从HTTP说起HTTP（Hyper TEXT Transfer Protocol超文本传输协议）是目前互联网上应用最为广泛的一种网络协议，在网络模型中位于应用层，用于在Web浏览器和网站服务器之间传递信息，但是HTTP协议以明文的方式发送内容，不提供任何数据加密，攻击者能够很轻易截获传输的信息，造成的影响：1.你不希望被看到的信息被看到，2.如果传输的数据是可执行文件而被攻击者修改，这样可能对计算">
 <meta name="keywords" content="计算机网络,HTTPS,SSL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSL及其加密通信过程">
 <meta property="og:url" content="https://JXhacker.github.io/2019/04/09/SSL及其加密通信过程/index.html">
 <meta property="og:site_name" content="WanZhiwen&#39;blogs">
-<meta property="og:description" content="从HTTP说起HTTP（Hyper TEXT Transfer Protocol超文本传输协议）是目前互联网上应用最为广泛的一种网络协议，在网络模型中位于应用层，用于在Web浏览器和网站服务器之间传递信息，但是HTTP协议以明文的方式发送内容，不提供任何数据加密，攻击者能够很轻易通过抓包的方式截取传输内容并读懂其中的信息，所以HTTP不适合传输一些比较私密的信息。就比如用户从服务器下载一个文件，如">
+<meta property="og:description" content="从HTTP说起HTTP（Hyper TEXT Transfer Protocol超文本传输协议）是目前互联网上应用最为广泛的一种网络协议，在网络模型中位于应用层，用于在Web浏览器和网站服务器之间传递信息，但是HTTP协议以明文的方式发送内容，不提供任何数据加密，攻击者能够很轻易截获传输的信息，造成的影响：1.你不希望被看到的信息被看到，2.如果传输的数据是可执行文件而被攻击者修改，这样可能对计算">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jxhacker.github.io/2019/04/09/SSL及其加密通信过程/SSL协议在网络模型中的位置.png">
 <meta property="og:image" content="https://jxhacker.github.io/2019/04/09/SSL及其加密通信过程/非对称加密方式1.png">
@@ -161,10 +161,10 @@
 <meta property="og:image" content="https://jxhacker.github.io/2019/04/09/SSL及其加密通信过程/SSL握手协议.png">
 <meta property="og:image" content="https://jxhacker.github.io/2019/04/09/SSL及其加密通信过程/握手协议DH算法.png">
 <meta property="og:image" content="https://jxhacker.github.io/2019/04/09/SSL及其加密通信过程/SSL握手协议抓包.png">
-<meta property="og:updated_time" content="2019-05-27T08:24:30.411Z">
+<meta property="og:updated_time" content="2019-05-27T12:23:03.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSL及其加密通信过程">
-<meta name="twitter:description" content="从HTTP说起HTTP（Hyper TEXT Transfer Protocol超文本传输协议）是目前互联网上应用最为广泛的一种网络协议，在网络模型中位于应用层，用于在Web浏览器和网站服务器之间传递信息，但是HTTP协议以明文的方式发送内容，不提供任何数据加密，攻击者能够很轻易通过抓包的方式截取传输内容并读懂其中的信息，所以HTTP不适合传输一些比较私密的信息。就比如用户从服务器下载一个文件，如">
+<meta name="twitter:description" content="从HTTP说起HTTP（Hyper TEXT Transfer Protocol超文本传输协议）是目前互联网上应用最为广泛的一种网络协议，在网络模型中位于应用层，用于在Web浏览器和网站服务器之间传递信息，但是HTTP协议以明文的方式发送内容，不提供任何数据加密，攻击者能够很轻易截获传输的信息，造成的影响：1.你不希望被看到的信息被看到，2.如果传输的数据是可执行文件而被攻击者修改，这样可能对计算">
 <meta name="twitter:image" content="https://jxhacker.github.io/2019/04/09/SSL及其加密通信过程/SSL协议在网络模型中的位置.png">
 
 
@@ -465,7 +465,7 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; 更新于
-              <time itemprop="dateUpdated" datetime="2019-05-27T16:24:30+08:00" content="2019-05-27">
+              <time itemprop="dateUpdated" datetime="2019-05-27T20:23:03+08:00" content="2019-05-27">
                 2019-05-27
               </time>
             </span>
@@ -529,7 +529,7 @@
       
 
       
-        <h1 id="从HTTP说起"><a href="#从HTTP说起" class="headerlink" title="从HTTP说起"></a>从HTTP说起</h1><p>HTTP（Hyper TEXT Transfer Protocol超文本传输协议）是目前互联网上应用最为广泛的一种网络协议，在网络模型中位于应用层，用于在Web浏览器和网站服务器之间传递信息，但是HTTP协议以明文的方式发送内容，不提供任何数据加密，攻击者能够很轻易通过抓包的方式截取传输内容并读懂其中的信息，所以HTTP不适合传输一些比较私密的信息。就比如用户从服务器下载一个文件，如果是文件是一些可执行文件而又被别人修改过，用户执行这个文件可能会对计算机造成</p>
+        <h1 id="从HTTP说起"><a href="#从HTTP说起" class="headerlink" title="从HTTP说起"></a>从HTTP说起</h1><p>HTTP（Hyper TEXT Transfer Protocol超文本传输协议）是目前互联网上应用最为广泛的一种网络协议，在网络模型中位于应用层，用于在Web浏览器和网站服务器之间传递信息，但是HTTP协议以明文的方式发送内容，不提供任何数据加密，攻击者能够很轻易截获传输的信息，造成的影响：1.你不希望被看到的信息被看到，2.如果传输的数据是可执行文件而被攻击者修改，这样可能对计算机的损害。</p>
 <p>为了解决HTTP这一缺陷，HTTPS（Hyper TEXT Transfer Protocol over Secure Socket Layer）协议出现。HTTPS是在HTTP的基础上加入SSL协议。传输以密文传输，保证数据传输的安全(文件是否被修改)以及确认网站的真实性（确定发送者的真实身份）。</p>
 <pre><code>HTTPS=HTTP+SSL
 </code></pre><h1 id="SSL协议在网络模型中的位置"><a href="#SSL协议在网络模型中的位置" class="headerlink" title="SSL协议在网络模型中的位置"></a>SSL协议在网络模型中的位置</h1><p><img src="/2019/04/09/SSL及其加密通信过程/SSL协议在网络模型中的位置.png" alt="SSL协议在网络模型中的位置"></p>
