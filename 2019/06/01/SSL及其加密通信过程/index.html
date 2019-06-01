@@ -140,12 +140,13 @@
 
 
 
-  <meta name="description" content="title: SSL及其加密通信过程date: 2019-04-10 00:00:33tags: - Docker categories: - 技术学习 SSL及其加密通信过程目录 从HTTP说起 SSL协议在网络模型种的位置 SSL和TLS的关系 SSL协议的构成   几个密码学相关概念 SSL加密传输的过程 为什么不直接用对称加密进行加密传输 非对称加密的传输方式 数字签名 数字证书 证书信任">
+  <meta name="description" content="SSL及其加密通信过程目录 从HTTP说起 SSL协议在网络模型种的位置 SSL和TLS的关系 SSL协议的构成   几个密码学相关概念 SSL加密传输的过程 为什么不直接用对称加密进行加密传输 非对称加密的传输方式 数字签名 数字证书 证书信任链   SSL握手协议 参考资料  从HTTP说起HTTP（Hyper TEXT Transfer Protocol超文本传输协议）是目前互联网上应用最为">
+<meta name="keywords" content="SSL,network">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WanZhiwen&#39;blogs">
+<meta property="og:title" content="SSL及其加密通信过程">
 <meta property="og:url" content="https://JXhacker.github.io/2019/06/01/SSL及其加密通信过程/index.html">
 <meta property="og:site_name" content="WanZhiwen&#39;blogs">
-<meta property="og:description" content="title: SSL及其加密通信过程date: 2019-04-10 00:00:33tags: - Docker categories: - 技术学习 SSL及其加密通信过程目录 从HTTP说起 SSL协议在网络模型种的位置 SSL和TLS的关系 SSL协议的构成   几个密码学相关概念 SSL加密传输的过程 为什么不直接用对称加密进行加密传输 非对称加密的传输方式 数字签名 数字证书 证书信任">
+<meta property="og:description" content="SSL及其加密通信过程目录 从HTTP说起 SSL协议在网络模型种的位置 SSL和TLS的关系 SSL协议的构成   几个密码学相关概念 SSL加密传输的过程 为什么不直接用对称加密进行加密传输 非对称加密的传输方式 数字签名 数字证书 证书信任链   SSL握手协议 参考资料  从HTTP说起HTTP（Hyper TEXT Transfer Protocol超文本传输协议）是目前互联网上应用最为">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jxhacker.github.io/2019/06/01/SSL及其加密通信过程/SSL协议在网络模型中的位置.png">
 <meta property="og:image" content="https://jxhacker.github.io/2019/06/01/SSL及其加密通信过程/非对称加密方式1.png">
@@ -160,10 +161,10 @@
 <meta property="og:image" content="https://jxhacker.github.io/2019/06/01/SSL及其加密通信过程/SSL握手协议.png">
 <meta property="og:image" content="https://jxhacker.github.io/2019/06/01/SSL及其加密通信过程/握手协议DH算法.png">
 <meta property="og:image" content="https://jxhacker.github.io/2019/06/01/SSL及其加密通信过程/SSL握手协议抓包.png">
-<meta property="og:updated_time" content="2019-06-01T02:08:34.301Z">
+<meta property="og:updated_time" content="2019-06-01T02:16:38.515Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WanZhiwen&#39;blogs">
-<meta name="twitter:description" content="title: SSL及其加密通信过程date: 2019-04-10 00:00:33tags: - Docker categories: - 技术学习 SSL及其加密通信过程目录 从HTTP说起 SSL协议在网络模型种的位置 SSL和TLS的关系 SSL协议的构成   几个密码学相关概念 SSL加密传输的过程 为什么不直接用对称加密进行加密传输 非对称加密的传输方式 数字签名 数字证书 证书信任">
+<meta name="twitter:title" content="SSL及其加密通信过程">
+<meta name="twitter:description" content="SSL及其加密通信过程目录 从HTTP说起 SSL协议在网络模型种的位置 SSL和TLS的关系 SSL协议的构成   几个密码学相关概念 SSL加密传输的过程 为什么不直接用对称加密进行加密传输 非对称加密的传输方式 数字签名 数字证书 证书信任链   SSL握手协议 参考资料  从HTTP说起HTTP（Hyper TEXT Transfer Protocol超文本传输协议）是目前互联网上应用最为">
 <meta name="twitter:image" content="https://jxhacker.github.io/2019/06/01/SSL及其加密通信过程/SSL协议在网络模型中的位置.png">
 
 
@@ -182,7 +183,7 @@
   };
 </script>
 
-  <title> | WanZhiwen'blogs</title>
+  <title>SSL及其加密通信过程 | WanZhiwen'blogs</title>
   
 
 
@@ -429,7 +430,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">SSL及其加密通信过程
 
               
             
@@ -455,7 +456,7 @@
                 
               
 
-              <time title="创建时间：2019-06-01 10:04:17" itemprop="dateCreated datePublished" datetime="2019-06-01T10:04:17+08:00">2019-06-01</time>
+              <time title="创建时间：2019-06-01 10:13:35" itemprop="dateCreated datePublished" datetime="2019-06-01T10:13:35+08:00">2019-06-01</time>
             
 
             
@@ -464,13 +465,31 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; 更新于
-              <time itemprop="dateUpdated" datetime="2019-06-01T10:08:34+08:00" content="2019-06-01">
+              <time itemprop="dateUpdated" datetime="2019-06-01T10:16:38+08:00" content="2019-06-01">
                 2019-06-01
               </time>
             </span>
           
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术学习/" itemprop="url" rel="index"><span itemprop="name">技术学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -479,7 +498,7 @@
 
           
           
-            <span id="/2019/06/01/SSL及其加密通信过程/" class="leancloud_visitors" data-flag-title>
+            <span id="/2019/06/01/SSL及其加密通信过程/" class="leancloud_visitors" data-flag-title="SSL及其加密通信过程">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -510,11 +529,7 @@
       
 
       
-        <p>title: SSL及其加密通信过程<br>date: 2019-04-10 00:00:33<br>tags:</p>
-<pre><code>- Docker
-</code></pre><p>categories:</p>
-<pre><code>- 技术学习
-</code></pre><h1 id="SSL及其加密通信过程"><a href="#SSL及其加密通信过程" class="headerlink" title="SSL及其加密通信过程"></a>SSL及其加密通信过程</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+        <h1 id="SSL及其加密通信过程"><a href="#SSL及其加密通信过程" class="headerlink" title="SSL及其加密通信过程"></a>SSL及其加密通信过程</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
 <li><a href="#从HTTP说起">从HTTP说起</a></li>
 <li><a href="#SSL协议在网络模型种的位置">SSL协议在网络模型种的位置</a><ul>
 <li><a href="#SSL和TLS的关系">SSL和TLS的关系</a></li>
@@ -653,6 +668,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/SSL/" rel="tag"># SSL</a>
+          
+            <a href="/tags/network/" rel="tag"># network</a>
+          
+        </div>
+      
 
       
       
@@ -787,7 +810,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
