@@ -160,7 +160,7 @@
 <meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/10.png">
 <meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/11.png">
 <meta property="og:image" content="https://jxhacker.github.io/2019/04/10/Java字节码的文件结构解析/12.png">
-<meta property="og:updated_time" content="2019-04-15T05:29:01.019Z">
+<meta property="og:updated_time" content="2019-06-04T11:31:01.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java字节码的文件结构解析">
 <meta name="twitter:description" content="1、字节码文件产生缘由java语言在其诞生之初就有一句口号：“一次编写，到处运行”，这句话也表达了大多数开发人员对于冲破平台界限的一种渴望，因为以前的编程语言都不支持跨平台运行。就拿C语言作为一个例子，我们知道在不同的操作系统中的cpu指令集是不一样的例如windows只支持x86系列，linux即有支持ARM的，也有支持x86的，这就导致一个结果——C语言在不同操作系统编译后产生的二进制序列运行">
@@ -464,8 +464,8 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; 更新于
-              <time itemprop="dateUpdated" datetime="2019-04-15T13:29:01+08:00" content="2019-04-15">
-                2019-04-15
+              <time itemprop="dateUpdated" datetime="2019-06-04T19:31:01+08:00" content="2019-06-04">
+                2019-06-04
               </time>
             </span>
           
@@ -529,14 +529,8 @@
 
       
         <h2 id="1、字节码文件产生缘由"><a href="#1、字节码文件产生缘由" class="headerlink" title="1、字节码文件产生缘由"></a>1、字节码文件产生缘由</h2><p>java语言在其诞生之初就有一句口号：“一次编写，到处运行”，这句话也表达了大多数开发人员对于冲破平台界限的一种渴望，因为以前的编程语言都不支持跨平台运行。就拿C语言作为一个例子，我们知道在不同的操作系统中的cpu指令集是不一样的例如windows只支持x86系列，linux即有支持ARM的，也有支持x86的，这就导致一个结果——C语言在不同操作系统编译后产生的二进制序列运行效果是不一样的，它就必须得在不同的操作系统上安装不同的编译器才能在不同的操作系统上运行。而Java则用了一个虚拟机的概念，Java的源代码经过编译后产生.class为后缀的文件，这就是我们所说的字节码文件。<br>用一小段代码进行演示（本文其它部分也用该段代码进行讲解）：<br>源代码TestClass.java：</p>
-<pre><code>package org.fenixsoft.clazz;
-public class TestClass{
-    private int m;
-    public int inc(){
-        return m+1;
-    }
-}
-</code></pre><p>用javac命令进行编译生成TestClass.class文件，然后用winhex这个16进制编辑器进行查看<br><img src="/2019/04/10/Java字节码的文件结构解析/1.png" alt="二进制class文件"><br>这种文件可以在所有的Java虚拟机上运行，不管你是什么操作系统。从而实现跨平台运行，虽然不同平台的Java虚拟机的实现各不相同。这种虚拟机是真实操作系统的一个抽象，逻辑上可以理解为一个独立的平台，利用这个平台实现跨操作系统运行。<br>除了平台无关之外，Java虚拟机还实现了语言无关，因为Java虚拟机只和class文件具有“绑定关系”，但是除Java语言外的其它语言如果能编译成class文件的话也能在虚拟机上运行。已经有JRuby和Groovy等语言能在Java虚拟机上运行。<br>总的来说，虚拟机的引入是实现平台无关性和语言无关性的一个关键，对与字节码文件的研究对于理解Java和Java虚拟机有很大的帮助，下面我们就来深入理解一下这个字节码文件的结构。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.fenixsoft.clazz;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestClass</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> m;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">inc</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> m+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>用javac命令进行编译生成TestClass.class文件，然后用winhex这个16进制编辑器进行查看<br><img src="/2019/04/10/Java字节码的文件结构解析/1.png" alt="二进制class文件"><br>这种文件可以在所有的Java虚拟机上运行，不管你是什么操作系统。从而实现跨平台运行，虽然不同平台的Java虚拟机的实现各不相同。这种虚拟机是真实操作系统的一个抽象，逻辑上可以理解为一个独立的平台，利用这个平台实现跨操作系统运行。<br>除了平台无关之外，Java虚拟机还实现了语言无关，因为Java虚拟机只和class文件具有“绑定关系”，但是除Java语言外的其它语言如果能编译成class文件的话也能在虚拟机上运行。已经有JRuby和Groovy等语言能在Java虚拟机上运行。<br>总的来说，虚拟机的引入是实现平台无关性和语言无关性的一个关键，对与字节码文件的研究对于理解Java和Java虚拟机有很大的帮助，下面我们就来深入理解一下这个字节码文件的结构。</p>
 <h2 id="2、class类文件结构"><a href="#2、class类文件结构" class="headerlink" title="2、class类文件结构"></a>2、class类文件结构</h2><p>Java的class文件时一组以8位的字节为基础单位的二进制，根据Java虚拟机规定，Class文件格式采用一种类似c语言的结构体来存储数据，这种伪结构中只有两种数据类型：无符号数和表。</p>
 <ul>
 <li>无符号数：数据基本的数据类型，以u1、u2、u4、u8分别表示一个字节，2个字节，4个字节和8个字节的无符号数，它可以用老表示数字，索引、数据值或者按照utf-8编码的字符串。</li>
