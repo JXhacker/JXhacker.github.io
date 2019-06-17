@@ -140,17 +140,31 @@
 
 
 
-  <meta name="description" content="learning &amp; learning">
-<meta property="og:type" content="website">
-<meta property="og:title" content="schedule">
-<meta property="og:url" content="https://JXhacker.github.io/schedule/index.html">
+  <meta name="description" content="图像滤波和混合图像目录 介绍 图像滤波 图像滤波基本原理 高通滤波和低通滤波   图像融合 效果展示 原图 低通滤波 高通滤波 图像融合    介绍本文是参考布朗大学的一个计算机课程的实验做的，主要是通过图像滤波和图像融合得到尺度相关的一个图像即图像的大小影响对图像内容的判断的图像。实验原内容可以点击这里进行查看。 图像滤波图像滤波基本原理图像滤波可以更改或者增强图像，通过滤波可以强调一些特征或者">
+<meta name="keywords" content="CV,图像滤波">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像滤波和图像混合">
+<meta property="og:url" content="https://JXhacker.github.io/2019/06/16/图像滤波和图像混合/index.html">
 <meta property="og:site_name" content="WanZhiwen&#39;blogs">
-<meta property="og:description" content="learning &amp; learning">
+<meta property="og:description" content="图像滤波和混合图像目录 介绍 图像滤波 图像滤波基本原理 高通滤波和低通滤波   图像融合 效果展示 原图 低通滤波 高通滤波 图像融合    介绍本文是参考布朗大学的一个计算机课程的实验做的，主要是通过图像滤波和图像融合得到尺度相关的一个图像即图像的大小影响对图像内容的判断的图像。实验原内容可以点击这里进行查看。 图像滤波图像滤波基本原理图像滤波可以更改或者增强图像，通过滤波可以强调一些特征或者">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-09T09:12:42.224Z">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/滤波原理.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/原图.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/高斯核滤波.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/sabel算子滤波.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/离散拉普拉斯算子滤波.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/原图减去高斯滤波.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/狗原图.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/猫原图.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/狗低通滤波图.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/猫高通滤波图.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/融合图像降采样图.png">
+<meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/爱因斯坦玛丽莲梦露融合图.png">
+<meta property="og:updated_time" content="2019-06-17T02:28:51.806Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="schedule">
-<meta name="twitter:description" content="learning &amp; learning">
+<meta name="twitter:title" content="图像滤波和图像混合">
+<meta name="twitter:description" content="图像滤波和混合图像目录 介绍 图像滤波 图像滤波基本原理 高通滤波和低通滤波   图像融合 效果展示 原图 低通滤波 高通滤波 图像融合    介绍本文是参考布朗大学的一个计算机课程的实验做的，主要是通过图像滤波和图像融合得到尺度相关的一个图像即图像的大小影响对图像内容的判断的图像。实验原内容可以点击这里进行查看。 图像滤波图像滤波基本原理图像滤波可以更改或者增强图像，通过滤波可以强调一些特征或者">
+<meta name="twitter:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/滤波原理.png">
 
 
 
@@ -158,7 +172,7 @@
 
   
   
-  <link rel="canonical" href="https://JXhacker.github.io/schedule/">
+  <link rel="canonical" href="https://JXhacker.github.io/2019/06/16/图像滤波和图像混合/">
 
 
 
@@ -168,7 +182,7 @@
   };
 </script>
 
-  <title>schedule | WanZhiwen'blogs</title>
+  <title>图像滤波和图像混合 | WanZhiwen'blogs</title>
   
 
 
@@ -376,84 +390,297 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://JXhacker.github.io/2019/06/16/图像滤波和图像混合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JXhacker">
+      <meta itemprop="description" content="learning & learning">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WanZhiwen'blogs">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">schedule
+        
+        
+          <h1 class="post-title" itemprop="name headline">图像滤波和图像混合
 
-</h1>
+              
+            
+          </h1>
+        
 
-<div class="post-meta">
-  
-  
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-16 21:23:17" itemprop="dateCreated datePublished" datetime="2019-06-16T21:23:17+08:00">2019-06-16</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; 更新于
+              <time itemprop="dateUpdated" datetime="2019-06-17T10:28:51+08:00" content="2019-06-17">
+                2019-06-17
+              </time>
+            </span>
+          
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术学习/" itemprop="url" rel="index"><span itemprop="name">技术学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/06/16/图像滤波和图像混合/" class="leancloud_visitors" data-flag-title="图像滤波和图像混合">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="图像滤波和混合图像"><a href="#图像滤波和混合图像" class="headerlink" title="图像滤波和混合图像"></a>图像滤波和混合图像</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#介绍">介绍</a></li>
+<li><a href="#图像滤波">图像滤波</a><ul>
+<li><a href="#图像滤波基本原理">图像滤波基本原理</a></li>
+<li><a href="#高通滤波和低通滤波">高通滤波和低通滤波</a></li>
+</ul>
+</li>
+<li><a href="#图像融合">图像融合</a></li>
+<li><a href="#效果展示">效果展示</a><ul>
+<li><a href="#原图">原图</a></li>
+<li><a href="#低通滤波">低通滤波</a></li>
+<li><a href="#高通滤波">高通滤波</a></li>
+<li><a href="#图像融合">图像融合</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>本文是参考布朗大学的一个计算机课程的实验做的，主要是通过图像滤波和图像融合得到尺度相关的一个图像即图像的大小影响对图像内容的判断的图像。实验原内容可以<a href="http://cs.brown.edu/courses/cs143/2013/proj1/" target="_blank" rel="noopener">点击这里</a>进行查看。</p>
+<h2 id="图像滤波"><a href="#图像滤波" class="headerlink" title="图像滤波"></a>图像滤波</h2><h3 id="图像滤波基本原理"><a href="#图像滤波基本原理" class="headerlink" title="图像滤波基本原理"></a>图像滤波基本原理</h3><p>图像滤波可以更改或者增强图像，通过滤波可以强调一些特征或者去除图像中一些不需要的部分，而滤波器则是滤波操作的主要工具。图像滤波通过以下公式进行计算：<br>$$<br>h[m,n]=\sum^{}_{k,l}{f[k,l]I[m+k,n+l]}<br>$$<br>其中h表示输出，f表示滤波器，I表示原图像</p>
+<p><img src="/2019/06/16/图像滤波和图像混合/滤波原理.png" alt="滤波原理"></p>
+<p>最左边的矩阵称为滤波算子用于对图像进行滤波。它通过在图像上移动计算出对应位置的滤波结果，在每个状态下，滤波算子和图像对应位置进行一次卷积操作，得到该位置下的滤波结果。</p>
+<p>滤波器的具体实现代码如下所示</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="MATLAB"><figure class="iseeu highlight /matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span> = <span class="title">my_imfilter</span><span class="params">(image, filter)</span></span></span><br><span class="line">image_row = <span class="built_in">size</span>(image, <span class="number">1</span>);<span class="comment">%图像行数</span></span><br><span class="line">image_col = <span class="built_in">size</span>(image, <span class="number">2</span>);<span class="comment">%图像列数</span></span><br><span class="line">image_channel = <span class="built_in">size</span>(image, <span class="number">3</span>);<span class="comment">%图像层数（颜色）</span></span><br><span class="line">filter_row = <span class="built_in">size</span>(filter, <span class="number">1</span>);<span class="comment">%滤波器行数</span></span><br><span class="line">filter_col = <span class="built_in">size</span>(filter, <span class="number">2</span>);<span class="comment">%滤波器列数</span></span><br><span class="line">image = padarray(image, [<span class="built_in">floor</span>(filter_row/<span class="number">2</span>), <span class="built_in">floor</span>(filter_col/<span class="number">2</span>)], <span class="number">0</span>);<span class="comment">%对图像边缘填充0</span></span><br><span class="line">output = <span class="built_in">zeros</span>(image_row, image_col, image_channel);<span class="comment">% 对输出进行初始化</span></span><br><span class="line"><span class="keyword">for</span> channel = <span class="number">1</span>:image_channel</span><br><span class="line">    <span class="keyword">for</span> row = <span class="number">1</span>:image_row</span><br><span class="line">        <span class="keyword">for</span> col = <span class="number">1</span>:image_col</span><br><span class="line">            filter_matrix_mul = image(row:row+filter_row<span class="number">-1</span>, col:col+filter_col<span class="number">-1</span>, channel) .* filter;<span class="comment">% 两个矩阵各个点相乘</span></span><br><span class="line">            output(row, col, channel) = sum(filter_matrix_mul(:));<span class="comment">% 对目标矩阵相加</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="高通滤波和低通滤波"><a href="#高通滤波和低通滤波" class="headerlink" title="高通滤波和低通滤波"></a>高通滤波和低通滤波</h3><p>滤波器一般来说分为高通滤波器和低通滤波器。</p>
+<ul>
+<li><p>高通滤波器：减弱或阻隔低频信号，保留高频信号。</p>
+</li>
+<li><p>低通滤波器：减弱或阻隔高频信号，保留低频信号。</p>
+</li>
+</ul>
+<p>其中高频指的是图像中灰度变化剧烈的点，一般是图像轮廓或者噪声，低频指的是图像中平坦的灰度变化不大的点。高通滤波器可以检测图像中尖锐，变化明显的地方，低通滤波器可以让图像变得更平滑，滤除图像中的噪声，上面介绍的高斯滤波器是低通滤波器的一种，是一个常用的用于图像模糊处理的滤波器。</p>
+<p>常用的低通滤波算子有高斯核。</p>
+<p>常用的高通滤波算子有Sobel算子[-1 0 1;<br>-2 0 2; -1 0 1]、离散拉普拉斯算子[0 1 0; 1 -4 1; 0 1 0]，还有一种简单的高通滤波方式就是原图减去低通滤波图。</p>
+<h2 id="图像融合"><a href="#图像融合" class="headerlink" title="图像融合"></a>图像融合</h2><p>图像融合是指及那个多源信道所采集到的关于同一目标的图形数据经过图像处理和计算机技术等，最大限度的提取各自信道中有利的信息，最后综合成高质量的图像以提高图像信息的利用率。</p>
+<p>这里利用两张不同图片分别进行高通滤波和低通滤波，然后将这两张图片进行融合得到目标图像，得到的目标图像有一种距离相关的视觉特征，也就是说从远处看和从近处看这张融合图像效果不一样，具体来说从远处看会更像低通滤波的图像，从近处看看到的更像高通滤波的图像。</p>
+<p>样例代码如下所示</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="MATLAB"><figure class="iseeu highlight /matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% filter是一个滤波算子</span></span><br><span class="line">low_frequencies = my_imfilter(image1, filter);<span class="comment">%低通滤波</span></span><br><span class="line">high_frequencies = image2 - my_imfilter(image2, filter);<span class="comment">%高通滤波（原图减去低通滤波图）</span></span><br><span class="line">hybrid_image = low_frequencies + high_frequencies;<span class="comment">%图像融合</span></span><br></pre></td></tr></table></figure></div>
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><h3 id="原图"><a href="#原图" class="headerlink" title="原图"></a>原图</h3><p><img src="/2019/06/16/图像滤波和图像混合/原图.png" alt="猫原图"></p>
+<h3 id="低通滤波"><a href="#低通滤波" class="headerlink" title="低通滤波"></a>低通滤波</h3><p>低通滤波(高斯核)后的图像</p>
+<p><img src="/2019/06/16/图像滤波和图像混合/高斯核滤波.png" alt="高斯核滤波"></p>
+<h3 id="高通滤波"><a href="#高通滤波" class="headerlink" title="高通滤波"></a>高通滤波</h3><p>高通滤波(sabel算子)后图像</p>
+<p><img src="/2019/06/16/图像滤波和图像混合/sabel算子滤波.png" alt="sabel算子滤波"></p>
+<p>高通滤波(离散拉普拉斯算子)后图像</p>
+<p><img src="/2019/06/16/图像滤波和图像混合/离散拉普拉斯算子滤波.png" alt="离散拉普拉斯算子滤波"></p>
+<p>高通滤波（原图减去高斯滤波）后图像</p>
+<p><img src="/2019/06/16/图像滤波和图像混合/原图减去高斯滤波.png" alt="原图减去高斯滤波"></p>
+<h3 id="图像融合-1"><a href="#图像融合-1" class="headerlink" title="图像融合"></a>图像融合</h3><p>原图两张</p>
+<div style="float:center;border:solid 1px 000;margin:2px;"><img src="/2019/06/16/图像滤波和图像混合/狗原图.png" align="left" width="260" height="260"><img src="/2019/06/16/图像滤波和图像混合/猫原图.png" align="right" width="260" height="260"></div>
 
 
 
+<p>对狗图像进行低通滤波(高斯核)，对猫图进行高通滤波(原图减去高斯滤波图)得到</p>
+<div style="float:center;border:solid 1px 000;margin:2px;"><img src="/2019/06/16/图像滤波和图像混合/狗低通滤波图.png" align="left" width="260" height="260"><img src="/2019/06/16/图像滤波和图像混合/猫高通滤波图.png" align="right" width="260" height="260"></div>
+
+<p>两图融合图的并进行5次降采样</p>
+<p><img src="/2019/06/16/图像滤波和图像混合/融合图像降采样图.png" alt="融合图像降采样图"></p>
+<p>可以看到当我们看最大的那张图时像只猫，越来越远看，就越像只狗了。</p>
+<p><img src="/2019/06/16/图像滤波和图像混合/爱因斯坦玛丽莲梦露融合图.png" alt="爱因斯坦玛丽莲梦露融合图"></p>
+<p>这张图是高通滤波后的玛丽莲梦露图和低通滤波的爱因斯坦图融合图，总大到小逐渐玛丽莲梦露逐渐爱因斯坦化(滑稽)</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>您的鼓励是我最大的动力！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/uploads/wechat.JPG" alt="JXhacker 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/uploads/alipay.JPG" alt="JXhacker 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
 </div>
 
-</header>
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CV/" rel="tag"># CV</a>
+          
+            <a href="/tags/图像滤波/" rel="tag"># 图像滤波</a>
+          
+        </div>
+      
 
       
       
       
-      <div class="post-body">
-        
-        
-          
-  
-  
-  
-  <div class="post-block schedule">
-    <div id="schedule">
-      <ul id="event-list">
-      </ul>
-    </div>
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/01/SSL及其加密通信过程/" rel="next" title="SSL及其加密通信过程">
+                <i class="fa fa-chevron-left"></i> SSL及其加密通信过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
 
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-
-
-    
-    
-    
   </div>
 
 
@@ -482,8 +709,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -629,6 +865,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图像滤波和混合图像"><span class="nav-number">1.</span> <span class="nav-text">图像滤波和混合图像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像滤波"><span class="nav-number">1.3.</span> <span class="nav-text">图像滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图像滤波基本原理"><span class="nav-number">1.3.1.</span> <span class="nav-text">图像滤波基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高通滤波和低通滤波"><span class="nav-number">1.3.2.</span> <span class="nav-text">高通滤波和低通滤波</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像融合"><span class="nav-number">1.4.</span> <span class="nav-text">图像融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果展示"><span class="nav-number">1.5.</span> <span class="nav-text">效果展示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原图"><span class="nav-number">1.5.1.</span> <span class="nav-text">原图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#低通滤波"><span class="nav-number">1.5.2.</span> <span class="nav-text">低通滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高通滤波"><span class="nav-number">1.5.3.</span> <span class="nav-text">高通滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图像融合-1"><span class="nav-number">1.5.4.</span> <span class="nav-text">图像融合</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1119,38 +1372,37 @@
   
   <script>
     
-    function showTime(Counter) {
-      var entries = [];
+    function addCount(Counter) {
       var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
 
-      $visitors.each(function() {
-        entries.push( $(this).attr('id').trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
         .done(function({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for (var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if (countSpan.text() == '') {
-              countSpan.text(0);
-            }
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
           }
         })
         .fail(function ({ responseJSON }) {
@@ -1175,9 +1427,7 @@
             });
           };
           
-            if ($('.post-title-link').length >= 1) {
-              showTime(Counter);
-            }
+            addCount(Counter);
           
         });
     });
