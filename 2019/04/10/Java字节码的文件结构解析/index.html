@@ -16,7 +16,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -219,7 +219,7 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -230,7 +230,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -542,6 +542,7 @@
 <h3 id="2-3、访问标志"><a href="#2-3、访问标志" class="headerlink" title="2.3、访问标志"></a>2.3、访问标志</h3><p>常量池结束后紧接着的两个字节表示访问标志(access_flag)，这个标志用于识别类或者接口的访问信息。2个字节本来是16个标志位，但是只有8个标志位有用，没有使用到的标志一律为0。<br><img src="/2019/04/10/Java字节码的文件结构解析/6.png" alt="访问标志"><br>本例中TestClass是一个普通类，不是接口、美剧或者注解，被public关键词修饰但没有被声明为final和abstract，所有它的ACC_PUBLIC和ACC_SUPER标志位是1，所以本例中的访问标志是<code>0x0021</code>。</p>
 <h3 id="2-4、类索引、父类索引和接口索引集合"><a href="#2-4、类索引、父类索引和接口索引集合" class="headerlink" title="2.4、类索引、父类索引和接口索引集合"></a>2.4、类索引、父类索引和接口索引集合</h3><p>类索引和父类索引都是一个u2类型的数据而接口索引是一组u2类型数据的集合，class通过这三个数据来确定类的继承关系。类索引用于确定类的全限类名，父索引用于确定这个父类的全限类名，接口索引用于描述这个类实现了哪些接口，因为一个类可以实现多个接口。<br>类索引、父类索引和接口索引按顺序排列在访问标志之后，类索引和父索引分别用一个u2类型的数据，分别指向一个类型是CONSTANT_Class_info类型的类描述符常量，通过其索引值找到CONSTANT_utf8_info中的全限类名字符串。<br>接口索引人口第一项是一个u2类型的数据为接口计数器(interface_count)，表示索引表个数，若没有实现任何接口，其值是0。<br>本例中的类索引是<code>0x0003</code>，父索引是<code>0x0004</code>，分别表示org.fenixsoft/clazz/TestClass和，java/lang/Object。接口计数器是<code>0x0000</code>，无接口实现。<br><img src="/2019/04/10/Java字节码的文件结构解析/7.png" alt="索引"></p>
 <h3 id="2-5、字段表集合"><a href="#2-5、字段表集合" class="headerlink" title="2.5、字段表集合"></a>2.5、字段表集合</h3><p>字段表集合分为容量计数器（fields_count)和字段表，字段计数器表示字段表个数。<br>字段表用于描述接口或者类中申明的变量，字段修饰符放在access_flag中，它与访问标志的access_flag相似，具体含义见下表<br><img src="/2019/04/10/Java字节码的文件结构解析/8.png" alt="字段表"><br>跟随access_flag后面的是两项索引值，name_index和descriptor_index。它们都是对常量池的引用。分别表示字段的简单名称和字段和方法的描述符。字段描述符的作用是描述字段的数据类型、方法的参数列表和返回值，基本数据类型和void类型都用一个大写字符表示，描述符标识字含义见下表</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -592,8 +593,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>对于数组类型，每一维度都使用一个前置’[‘描述，如一个整型数组int[]被描述为“[I”，用描述符描述方法时，参数列表严格顺序放在一组小括号里面，如void inc(int a,int b)的描述符是“(II)V”<br>本例中容器计数器的值是<code>0x0001</code>,说明有一个字段表，该字段表access_flag是<code>0x0002</code>,说明类型private，name_index和descriptor_index分别是<code>0x0005</code>和<code>0x0006</code>分别表示m和I说明其类型是int。descriptor_index后面跟一个属性表集合用于存放一些额外的信息。本例属性表计算器是<code>0x0000</code>，说明没有额外信息。<br><img src="/2019/04/10/Java字节码的文件结构解析/9.png" alt="字节码中的字段"></p>
 <h3 id="2-6、方法表集合"><a href="#2-6、方法表集合" class="headerlink" title="2.6、方法表集合"></a>2.6、方法表集合</h3><p>class对方法的描述和对字段的描述几乎采用一样的方式。仅在访问标志和属性表集合有所区别。<br>方法访问标志是：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -665,6 +668,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>还是以本例子讲解<br>容量计数器是<code>0x0002</code>，说明类中有两个方法(分别是类构造器和源码中的inc)，其中第一个方法访问标志是<code>0x0001</code>说明是public，名称索引和描述符索引分别是<code>0x0007</code>和<code>0x0008</code>，分别表示&lt; init&gt;和()V说明是void返回值，无参数。<br><img src="/2019/04/10/Java字节码的文件结构解析/10.png" alt="字节码中的方法表"></p>
 <p>接下来是属性集合，其容器计数器是<code>0x0001</code>，说明有个属性表，其中第一个属性表的第一个u2数据表示attribute_name_inde是属性表名称，值是<code>0x0009</code>，对于常量池“code”值，说明是个code属性。code属性表结构如表<br><img src="/2019/04/10/Java字节码的文件结构解析/11.png" alt="code属性表集合"><br>本例中属性长度是<code>0x0000001D</code>，maxstack是<code>0x0001</code>，maxlocal是<code>0x0001</code>，codelength是<code>0x00000005</code>，code是<code>0x2AB70001B1</code>，下面是exception属性集合，其计数器是0x0000，说明没有异常。下面有一个属性表，计数器是<code>0x0001</code>，值是<code>0x000A</code>，是LineNumberTable属性，用于描述Java源码行号和字节码行号之间的关系。其attribute_name_index是<code>0x000A</code>是属性名，指LineNumberTable，<code>0x00000006</code>是属性长度，<code>0x0001</code>是line_number_table_length,line_number_info包括了start_pc和line_number两个u2数据项。<br><img src="/2019/04/10/Java字节码的文件结构解析/12.png" alt="字节码中的属性表"></p>
 <h3 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h3><p>本文首先对class文件进行简要介绍，随后对的一个真实的.class文件每个字节进行分析深入了解了它的结构，分析它与源代码之间的关系，本文是了解Java虚拟机的基础知识，以科普为主，如有错误欢迎指正。<br>最后欢迎大家点赞关注</p>
@@ -1513,13 +1517,37 @@
           
         });
     });
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

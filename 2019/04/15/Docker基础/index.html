@@ -16,7 +16,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -211,7 +211,7 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -222,7 +222,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -579,7 +579,7 @@
 <ul>
 <li>-f告诉logs一直跟踪日志变化并返回 crtl+C停止</li>
 <li>-t在返回的结果上加上时间戳</li>
-<li>–tail选项是返回结尾处多少数量的，不加返回所有日志</li>
+<li>—tail选项是返回结尾处多少数量的，不加返回所有日志</li>
 </ul>
 <h3 id="查看容器内进程"><a href="#查看容器内进程" class="headerlink" title="查看容器内进程"></a>查看容器内进程</h3><p>命令: <code>docker top 容器名</code></p>
 <h3 id="在运行的容器中启动新进程"><a href="#在运行的容器中启动新进程" class="headerlink" title="在运行的容器中启动新进程"></a>在运行的容器中启动新进程</h3><p>命令:<code>docker exec [-d][-i][-t] 容器名[COMMAND][ARG...]</code></p>
@@ -605,10 +605,10 @@ vim index.html
 <ul>
 <li>无参数显示所有镜像详细信息</li>
 <li>+仓库名返回对应所有镜像</li>
-<li>-a,–all=false 所有镜像</li>
-<li>-f,–filter=[] 显示时过滤条件</li>
-<li>–no-trunc 指定不使用阶段的方式显示数据</li>
-<li>-q,–quit=false 只显示镜像唯一id</li>
+<li>-a,—all=false 所有镜像</li>
+<li>-f,—filter=[] 显示时过滤条件</li>
+<li>—no-trunc 指定不使用阶段的方式显示数据</li>
+<li>-q,—quit=false 只显示镜像唯一id</li>
 </ul>
 <p>返回信息:</p>
 <ul>
@@ -620,43 +620,43 @@ vim index.html
 </ul>
 <h4 id="查看镜像的详细信息"><a href="#查看镜像的详细信息" class="headerlink" title="查看镜像的详细信息"></a>查看镜像的详细信息</h4><p>命令: <code>docker inspect [options] container|image [container|]</code></p>
 <ul>
-<li>-f,–format=””</li>
+<li>-f,—format=””</li>
 </ul>
 <p>例如:<code>docker inspect ubuntu:latest</code></p>
 <h4 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h4><p>命令: docker rmi [options] IMAGE [image…]</p>
 <ul>
-<li>-f,–force=false 强制删除镜像</li>
-<li>–no-prune=false 保留删除镜像中未打标签的父镜像<br>例如: <code>docker rmi ubuntu:14.04</code><br>例如: <code>docker rmi ${docker images -q ubuntu}</code>删除仓库中所有镜像</li>
+<li>-f,—force=false 强制删除镜像</li>
+<li>—no-prune=false 保留删除镜像中未打标签的父镜像<br>例如: <code>docker rmi ubuntu:14.04</code><br>例如: <code>docker rmi ${docker images -q ubuntu}</code>删除仓库中所有镜像</li>
 </ul>
 <p><strong>注意一个镜像可能会有多个tag</strong></p>
 <h3 id="获取和推送镜像"><a href="#获取和推送镜像" class="headerlink" title="获取和推送镜像"></a>获取和推送镜像</h3><h4 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h4><p>docker Hub <a href="https://registry.hub.docker.com" target="_blank" rel="noopener">https://registry.hub.docker.com</a><br>使用前要注册dockerhub<br>命令: <code>docker search [options] term</code></p>
 <ul>
-<li>–automated=false 只显示自动化构建出的镜像</li>
-<li>–no-trunc=false 不以截断的方式输出</li>
-<li>-s,–star=0 限定显示结果的最低星级</li>
+<li>—automated=false 只显示自动化构建出的镜像</li>
+<li>—no-trunc=false 不以截断的方式输出</li>
+<li>-s,—star=0 限定显示结果的最低星级</li>
 </ul>
 <p>例如: <code>docker search ubuntu</code></p>
 <h4 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h4><p>命令: <code>docker pull [options] name:[:tag]</code></p>
 <ul>
-<li>-a,–all-tags=false 把仓库中所有匹配到的镜像下载到本地</li>
+<li>-a,—all-tags=false 把仓库中所有匹配到的镜像下载到本地</li>
 </ul>
 <h4 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h4><p>命令: <code>docker push name[:TAG]</code></p>
 <h3 id="构建Docker镜像-保存对容器的修改并再次使用"><a href="#构建Docker镜像-保存对容器的修改并再次使用" class="headerlink" title="构建Docker镜像(保存对容器的修改并再次使用)"></a>构建Docker镜像(保存对容器的修改并再次使用)</h3><h4 id="使用commit-构建镜像"><a href="#使用commit-构建镜像" class="headerlink" title="使用commit 构建镜像"></a>使用commit 构建镜像</h4><p>命令：<code>docker commit [options] container [repository [:TAG]]</code></p>
 <ul>
-<li>-a,–author=”” 指定作者</li>
-<li>-m,–message=”” 镜像构建的信息</li>
-<li>-p,–pause=true 暂停正在运行的容器</li>
+<li>-a,—author=”” 指定作者</li>
+<li>-m,—message=”” 镜像构建的信息</li>
+<li>-p,—pause=true 暂停正在运行的容器</li>
 </ul>
 <p>例如: docker commit -a ccc -m ‘nginx’ commit_test(容器) xxx/commit_test1(镜像名)</p>
 <h4 id="使用build构建镜像"><a href="#使用build构建镜像" class="headerlink" title="使用build构建镜像"></a>使用build构建镜像</h4><p>命令: <code>docker build 通过Dockerfile文件构建</code></p>
 <h5 id="创建dockerfile文件"><a href="#创建dockerfile文件" class="headerlink" title="创建dockerfile文件"></a>创建dockerfile文件</h5><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># first Dockerfile for test</span><br><span class="line"></span><br><span class="line">FROM ubuntu:14:04</span><br><span class="line">MAINTAINER jxhacker &quot;977242261@qq.com&quot;</span><br><span class="line">RUN apt-get upadte</span><br><span class="line">RUN apt-install -y nginx</span><br><span class="line">EXPOSE 80</span><br></pre></td></tr></table></figure></div>
 <h5 id="使用docker-build-options-PATH-URL-进行构建"><a href="#使用docker-build-options-PATH-URL-进行构建" class="headerlink" title="使用docker build [options] PATH|URL|-进行构建"></a>使用<code>docker build [options] PATH|URL|-</code>进行构建</h5><ul>
-<li>–force-rm=false</li>
-<li>–no-cache=false</li>
-<li>–pull=false</li>
-<li>-q,–quiet=false</li>
-<li>–rm=true</li>
-<li>-t,–tag=”” 指定构建出镜像的名字</li>
+<li>—force-rm=false</li>
+<li>—no-cache=false</li>
+<li>—pull=false</li>
+<li>-q,—quiet=false</li>
+<li>—rm=true</li>
+<li>-t,—tag=”” 指定构建出镜像的名字</li>
 </ul>
 <p>例如:<code>docker build -t=&#39;jxhacker/df_test1&#39; .</code></p>
 <h2 id="docker的C-S模式"><a href="#docker的C-S模式" class="headerlink" title="docker的C/S模式"></a>docker的C/S模式</h2><p><img src="/2019/04/15/Docker基础/docker的CS模式.png" alt="docker的C/S模式"></p>
@@ -681,13 +681,13 @@ vim index.html
 <li><p><code>sudo service docker restart</code></p>
 <h3 id="docker的启动选项"><a href="#docker的启动选项" class="headerlink" title="docker的启动选项"></a>docker的启动选项</h3><p>命令: <code>docker -d [options]</code></p>
 <ul>
-<li>-D,–debug=false</li>
-<li>-e,–exec-driver=”native”</li>
-<li>-g,–graph=”/var/lib/docker”</li>
-<li>–icc=true</li>
-<li>-l,–log-level=”info”</li>
-<li>–label=[]</li>
-<li>-p,–pidfile=”var/run/docker.pid”</li>
+<li>-D,—debug=false</li>
+<li>-e,—exec-driver=”native”</li>
+<li>-g,—graph=”/var/lib/docker”</li>
+<li>—icc=true</li>
+<li>-l,—log-level=”info”</li>
+<li>—label=[]</li>
+<li>-p,—pidfile=”var/run/docker.pid”</li>
 </ul>
 </li>
 </ul>
@@ -714,8 +714,8 @@ vim index.html
 <h3 id="docker-容器的互联"><a href="#docker-容器的互联" class="headerlink" title="docker 容器的互联"></a>docker 容器的互联</h3><h4 id="docker运行容器互相连接"><a href="#docker运行容器互相连接" class="headerlink" title="docker运行容器互相连接"></a>docker运行容器互相连接</h4><p><code>--icc=true</code>docker运行容器互相连接</p>
 <h4 id="所有容器间连接"><a href="#所有容器间连接" class="headerlink" title="所有容器间连接"></a>所有容器间连接</h4><p><code>--link</code>所有容器间连接<br>命令:<code>docker run --link=[container_name]:[alias] [image] [command]</code><br>例如:<code>docker run -it --name cct3 --link=cct1:webtest jxhacker/cct</code><br>这种方式即时重新启动容器ip改变还是能互联 </p>
 <h4 id="运行特定容器间的连接"><a href="#运行特定容器间的连接" class="headerlink" title="运行特定容器间的连接"></a>运行特定容器间的连接</h4><ul>
-<li>icc=false –iptable=true</li>
-<li>–link<br>这样就仅仅允许通过link配置的访问<h3 id="docker-容器与外部网络的连接"><a href="#docker-容器与外部网络的连接" class="headerlink" title="docker 容器与外部网络的连接"></a>docker 容器与外部网络的连接</h3><h4 id="ip-forward系统是否转发流量"><a href="#ip-forward系统是否转发流量" class="headerlink" title="ip_forward系统是否转发流量"></a>ip_forward系统是否转发流量</h4><code>ip-forward=true</code>守护进程启动时，设置系统的ip_forward<br><code>sysctl net.ipv4.conf.all.forwarding</code>查看数据转发是否开启<h4 id="iptables过滤防火墙系统"><a href="#iptables过滤防火墙系统" class="headerlink" title="iptables过滤防火墙系统"></a>iptables过滤防火墙系统</h4>filter表中包含的链</li>
+<li>icc=false —iptable=true</li>
+<li>—link<br>这样就仅仅允许通过link配置的访问<h3 id="docker-容器与外部网络的连接"><a href="#docker-容器与外部网络的连接" class="headerlink" title="docker 容器与外部网络的连接"></a>docker 容器与外部网络的连接</h3><h4 id="ip-forward系统是否转发流量"><a href="#ip-forward系统是否转发流量" class="headerlink" title="ip_forward系统是否转发流量"></a>ip_forward系统是否转发流量</h4><code>ip-forward=true</code>守护进程启动时，设置系统的ip_forward<br><code>sysctl net.ipv4.conf.all.forwarding</code>查看数据转发是否开启<h4 id="iptables过滤防火墙系统"><a href="#iptables过滤防火墙系统" class="headerlink" title="iptables过滤防火墙系统"></a>iptables过滤防火墙系统</h4>filter表中包含的链</li>
 <li>INPUT</li>
 <li>FORWARD</li>
 <li>OUTPUT</li>
@@ -746,7 +746,7 @@ vim index.html
 <h3 id="docker的数据卷容器"><a href="#docker的数据卷容器" class="headerlink" title="docker的数据卷容器"></a>docker的数据卷容器</h3><h4 id="什么是数据卷容器"><a href="#什么是数据卷容器" class="headerlink" title="什么是数据卷容器"></a>什么是数据卷容器</h4><p>命名的容器挂载数据卷，其他容器通过挂载这个容器实现数据共享，挂载数据卷的容器叫数据卷容器<br><img src="/2019/04/15/Docker基础/Docker数据卷架构.jpg" alt="Docker数据卷架构"></p>
 <h4 id="使用数据卷容器"><a href="#使用数据卷容器" class="headerlink" title="使用数据卷容器"></a>使用数据卷容器</h4><p>命令:<code>docker run --volumns-from [CONTAINER NAME]</code></p>
 <ul>
-<li>–volumns-from指定新建容器所指定的数据卷容器</li>
+<li>—volumns-from指定新建容器所指定的数据卷容器</li>
 <li>[CONTAINER NAME]已经挂载数据卷的容器的容器名</li>
 </ul>
 <p>例如:</p>
@@ -1612,13 +1612,37 @@ vim index.html
           
         });
     });
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

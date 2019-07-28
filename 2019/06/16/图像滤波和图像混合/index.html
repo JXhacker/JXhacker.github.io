@@ -16,7 +16,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -160,7 +160,7 @@
 <meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/猫高通滤波图.png">
 <meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/融合图像降采样图.png">
 <meta property="og:image" content="https://jxhacker.github.io/2019/06/16/图像滤波和图像混合/爱因斯坦玛丽莲梦露融合图.png">
-<meta property="og:updated_time" content="2019-06-17T02:59:42.103Z">
+<meta property="og:updated_time" content="2019-07-28T09:13:20.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像滤波和图像混合">
 <meta name="twitter:description" content="图像滤波和混合图像目录 介绍 图像滤波 图像滤波基本原理 高通滤波和低通滤波   图像融合 效果展示 原图 低通滤波 高通滤波 图像融合    介绍本文是参考布朗大学的一个计算机课程的实验做的，主要是通过图像滤波和图像融合得到尺度相关的一个图像即图像的大小影响对图像内容的判断的图像。实验原内容可以点击这里进行查看。 图像滤波图像滤波基本原理图像滤波可以更改或者增强图像，通过滤波可以强调一些特征或者">
@@ -219,7 +219,7 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -230,7 +230,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -464,8 +464,8 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; 更新于
-              <time itemprop="dateUpdated" datetime="2019-06-17T10:59:42+08:00" content="2019-06-17">
-                2019-06-17
+              <time itemprop="dateUpdated" datetime="2019-07-28T17:13:20+08:00" content="2019-07-28">
+                2019-07-28
               </time>
             </span>
           
@@ -545,7 +545,9 @@
 </li>
 </ul>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>本文是参考布朗大学的一个计算机课程的实验做的，主要是通过图像滤波和图像融合得到尺度相关的一个图像即图像的大小影响对图像内容的判断的图像。实验原内容可以<a href="http://cs.brown.edu/courses/cs143/2013/proj1/" target="_blank" rel="noopener">点击这里</a>进行查看。</p>
-<h2 id="图像滤波"><a href="#图像滤波" class="headerlink" title="图像滤波"></a>图像滤波</h2><h3 id="图像滤波基本原理"><a href="#图像滤波基本原理" class="headerlink" title="图像滤波基本原理"></a>图像滤波基本原理</h3><p>图像滤波可以更改或者增强图像，通过滤波可以强调一些特征或者去除图像中一些不需要的部分，而滤波器则是滤波操作的主要工具。图像滤波通过以下公式进行计算：<br>$$<br>h[m,n]=\sum^{}_{k,l}{f[k,l]I[m+k,n+l]}<br>$$<br>其中h表示输出，f表示滤波器，I表示原图像</p>
+<h2 id="图像滤波"><a href="#图像滤波" class="headerlink" title="图像滤波"></a>图像滤波</h2><h3 id="图像滤波基本原理"><a href="#图像滤波基本原理" class="headerlink" title="图像滤波基本原理"></a>图像滤波基本原理</h3><p>图像滤波可以更改或者增强图像，通过滤波可以强调一些特征或者去除图像中一些不需要的部分，而滤波器则是滤波操作的主要工具。图像滤波通过以下公式进行计算：</p>
+<script type="math/tex; mode=display">
+h[m,n]=\sum^{ }_{k,l} {f[k,l]I[m+k,n+l] }</script><p>其中h表示输出，f表示滤波器，I表示原图像</p>
 <p><img src="/2019/06/16/图像滤波和图像混合/滤波原理.png" alt="滤波原理"></p>
 <p>最左边的矩阵称为滤波算子用于对图像进行滤波。它通过在图像上移动计算出对应位置的滤波结果，在每个状态下，滤波算子和图像对应位置进行一次卷积操作，得到该位置下的滤波结果。</p>
 <p>滤波器的具体实现代码如下所示</p>
@@ -1437,6 +1439,70 @@
   
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
 
   
 
